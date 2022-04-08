@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Request Counter{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <h1>Content</h1>
+    <p>Lorem ipsum</p>
+    <div>
+        <form action="{{ url_for('request_counter') }}" method="get" id="get-form">
+            <input type="submit" class="btn btn-primary" value="Send GET request">
+        </form>
+        <form action="{{ url_for('request_counter') }}" method="post" id="post-form">
+            <input type="submit" class="btn btn-secondary" value="Send POST request">
+        </form>
+        <a href="{{ url_for('statistics') }}" class="btn btn-success">Statistics</a>
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ super() }}
+{% endblock %}
+{% block endbody %}
+    {{ super() }}
+{% endblock %}
