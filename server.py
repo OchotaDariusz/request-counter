@@ -6,7 +6,8 @@ app = Flask(__name__)
 
 def read_data(filename):
     counter_file = open(os.path.dirname(os.path.abspath(__file__)) + f'/{filename}', 'r')
-    requests_counter = counter_file.read().split(';')
+    requests_counter = counter_file.read().split(' ')
+    requests_counter = [int(element) for element in requests_counter if element.isdigit()]
     request_get = int(requests_counter[0])
     request_post = int(requests_counter[1])
     request_delete = int(requests_counter[2])
@@ -17,7 +18,7 @@ def read_data(filename):
 
 def save_data(filename, request_get, request_post, request_delete, request_put):
     counter_file = open(os.path.dirname(os.path.abspath(__file__)) + f'/{filename}', 'w')
-    requests_data = f'{request_get};{request_post};{request_delete};{request_put}'
+    requests_data = f'GET: {request_get} POST: {request_post} DELETE: {request_delete} PUT: {request_put}'
     counter_file.write(requests_data)
     counter_file.close()
 
