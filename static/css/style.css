@@ -1,0 +1,13 @@
+#content {
+    text-align: center;
+}
+
+#footer {
+    margin-top: 1%;
+    text-align: center;
+}
+
+form {
+    display: inline-block;
+    margin: 10px 5px;
+}
