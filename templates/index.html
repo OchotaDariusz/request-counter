@@ -4,8 +4,8 @@
     {{ super() }}
 {% endblock %}
 {% block content %}
-    <h1>Content</h1>
-    <p>Lorem ipsum</p>
+    <h1>Request Counter</h1>
+    <p>Send GET, POST, DELETE or PUT request to </p><code>/request-counter</code><p> route.</p>
     <div>
         <form action="{{ url_for('request_counter') }}" method="get" id="get-form">
             <input type="submit" class="btn btn-primary" value="Send GET request">
