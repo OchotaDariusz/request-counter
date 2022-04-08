@@ -11,3 +11,7 @@ form {
     display: inline-block;
     margin: 10px 5px;
 }
+
+.footer-nav {
+    margin: 2% auto;
+}
