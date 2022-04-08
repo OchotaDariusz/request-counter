@@ -2,14 +2,13 @@
 {% block title %}Stats{% endblock %}
 {% block head %}
     {{ super() }}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
 {% block content %}
     <h1>Statistics</h1>
-    <br>
-    <p>Request GET count: {{ request_get }}</p>
-    <p>Request POST count: {{ request_post }}</p>
-    <p>Request DELETE count: {{ request_delete }}</p>
-    <p>Request PUT count: {{ request_put }}</p>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
     <div class="footer-nav">
         <a href="{{ url_for('index') }}" class="btn btn-info">Back</a>
     </div>
@@ -19,4 +18,44 @@
 {% endblock %}
 {% block endbody %}
     {{ super() }}
+    <script>
+        let get_data = {{ request_get }};
+        let post_data = {{ request_post }};
+        let delete_data = {{ request_delete }};
+        let put_data = {{ request_put }};
+        let chart_data = [get_data, post_data, delete_data, put_data];
+        const labels = [
+            'GET',
+            'POST',
+            'DELETE',
+            'PUT',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Requests',
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(125, 220, 125)',
+                    'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4,
+                data: chart_data,
+            }]
+        };
+
+        const config = {
+            type: 'pie',
+            data: data,
+            options: {}
+        };
+    </script>
+    <script>
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
 {% endblock %}
